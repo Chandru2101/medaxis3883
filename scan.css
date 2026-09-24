@@ -1,0 +1,162 @@
+/* Background Gradient */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to bottom, #ffffff, #f4b6d3, #e58bc2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 400px;
+}
+
+/* Search Box */
+.search-box {
+  background: white;
+  border-radius: 25px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Results Card */
+.result-card {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #a60084;
+  border-radius: 12px;
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+.result-left {
+  flex: 1;
+  color: #c2185b;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 2;
+}
+
+.divider {
+  width: 2px;
+  background: #a60084;
+  margin: 0 12px;
+}
+
+.result-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Buttons */
+.btn {
+  border: 2px solid #a60084;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn.eu {
+  background: #fce4ec;
+  color: #a60084;
+}
+
+.btn.hyper {
+  background: #f8bbd0;
+  color: #880e4f;
+}
+
+.btn.hypo {
+  background: #f48fb1;
+  color: #6a1b9a;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Features Grid */
+.features {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-card i {
+  font-size: 28px;
+  color: #a60084;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom right, #fce4ec, #f8bbd0);
+  color: #a60084;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

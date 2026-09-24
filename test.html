@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediGuard - Thyroid Result</title>
+  </head>
+  <body>
+    <h2>Thyroid Test Result</h2>
+
+    <p><strong>Count:</strong> <span id="countValue">--</span></p>
+    <p><strong>Status:</strong> <span id="statusValue">--</span></p>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+    <script>
+      // ✅ Firebase config (your details)
+      const firebaseConfig = {
+        apiKey: "AIzaSyDliFJ9VknWSm9Wr2iR3Tcea-ee4dG6cH8",
+        authDomain: "mediguard-e1d64.firebaseapp.com",
+        databaseURL:
+          "https://mediguard-e1d64-default-rtdb.asia-southeast1.firebasedatabase.app/",
+        projectId: "mediguard-e1d64",
+        storageBucket: "mediguard-e1d64.firebasestorage.app",
+        messagingSenderId: "263659592663",
+        appId: "1:263659592663:web:49af1a1edf21aea4258992",
+        measurementId: "G-1550DLK1BE",
+      };
+
+      // ✅ Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+
+      // ✅ References
+      const countRef = database.ref("thyroid/count");
+      const statusRef = database.ref("thyroid/status");
+
+      // ✅ Update live count
+      countRef.on("value", (snapshot) => {
+        document.getElementById("countValue").textContent = snapshot.val();
+      });
+
+      // ✅ Update live status
+      statusRef.on("value", (snapshot) => {
+        document.getElementById("statusValue").textContent = snapshot.val();
+      });
+    </script>
+  </body>
+</html>

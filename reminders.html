@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>⏰ Hospital Appointment Reminders</title>
+    <style>
+      body {
+        margin: 0;
+        background: #ffe3ed;
+        font-family: "Segoe UI", Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        min-height: 100vh;
+        padding: 30px 0;
+        color: #444;
+      }
+      .app-container {
+        width: 400px;
+        background: #fffafa;
+        border-radius: 18px;
+        padding: 25px 22px;
+        box-shadow: 0 4px 30px rgba(255, 104, 180, 0.18);
+        box-sizing: border-box;
+      }
+      .back-btn {
+        display: inline-block;
+        margin-bottom: 14px;
+        cursor: pointer;
+        color: #ff65a3;
+        background: #fff0f6;
+        border: 1.8px solid #ff65a3;
+        border-radius: 12px;
+        padding: 8px 15px;
+        font-weight: 600;
+        font-size: 1em;
+        user-select: none;
+        transition: all 0.25s ease;
+      }
+      .back-btn:hover {
+        background: #ff65a3;
+        color: white;
+        box-shadow: 0 0 10px #ff65a3cc;
+      }
+      h2 {
+        color: #ff65a3;
+        font-weight: 600;
+        margin: 0 0 25px 0;
+        text-align: center;
+      }
+      .appointment-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 520px;
+        overflow-y: auto;
+      }
+      .appointment-item {
+        background: #ffe6f2;
+        border: 1.5px solid #ff9ad6;
+        border-radius: 12px;
+        margin: 14px 0;
+        padding: 18px 22px;
+        box-shadow: 0 2px 8px rgba(255, 101, 163, 0.25);
+        transition: box-shadow 0.25s ease;
+      }
+      .appointment-item:hover {
+        box-shadow: 0 5px 20px rgba(255, 101, 163, 0.45);
+      }
+      .appointment-header {
+        font-weight: 700;
+        color: #d63384;
+        font-size: 1.14em;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .appointment-info {
+        font-size: 1.03em;
+        color: #a4155b;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+      }
+      .emoji {
+        margin-right: 10px;
+        user-select: none;
+        font-size: 1.15em;
+        vertical-align: middle;
+      }
+    </style>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+
+      const appointments = [
+        {
+          date: "2025-10-15",
+          time: "10:30 AM",
+          doctor: "Dr. Aisha Rahman",
+          hospital: "Sunrise Medical Center",
+        },
+        {
+          date: "2026-01-18",
+          time: "02:00 PM",
+          doctor: "Dr. Rajesh Kumar",
+          hospital: "City Health Hospital",
+        },
+        {
+          date: "2026-04-22",
+          time: "11:15 AM",
+          doctor: "Dr. Priya Shah",
+          hospital: "Green Valley Clinic",
+        },
+        {
+          date: "2026-07-20",
+          time: "09:00 AM",
+          doctor: "Dr. Sameer Joshi",
+          hospital: "Metrocare Hospital",
+        },
+      ];
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const ul = document.getElementById("appointmentList");
+        appointments.forEach(({ date, time, doctor, hospital }) => {
+          const formattedDate = new Date(date).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+          const li = document.createElement("li");
+          li.className = "appointment-item";
+          li.innerHTML = `
+          <div class="appointment-header">
+            <span><span class="emoji">🩺</span>${doctor}</span>
+            <span><span class="emoji">🏥</span>${hospital}</span>
+          </div>
+          <div class="appointment-info">
+            <span class="emoji">📅</span>${formattedDate} &nbsp;&nbsp; <span class="emoji">⏰</span>${time}
+          </div>`;
+          ul.appendChild(li);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="app-container">
+      <span class="back-btn" onclick="goBack()">⬅ Back</span>
+      <h2>⏰ Upcoming Appointments</h2>
+      <ul id="appointmentList" class="appointment-list"></ul>
+    </div>
+  </body>
+</html>

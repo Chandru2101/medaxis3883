@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Suggestions</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #ffd6e8, #fff);
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      header {
+        text-align: center;
+        padding: 20px;
+        font-size: 26px;
+        font-weight: bold;
+        color: #e91e63;
+        animation: fadeInDown 1s;
+      }
+
+      .page {
+        display: none;
+        padding: 20px;
+        animation: fadeIn 0.6s ease-in-out;
+      }
+
+      .active {
+        display: block;
+      }
+
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin: 15px 0;
+        padding: 10px 20px;
+        background: #e91e63;
+        color: white;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .back-btn:hover {
+        background: #c2185b;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      ul li {
+        background: #fff;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+
+      ul li:hover {
+        transform: scale(1.05);
+        background: #ffe0ef;
+      }
+
+      /* Timer Styles */
+      .timer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+      }
+
+      .circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 10px solid #e91e63;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: bold;
+        color: #e91e63;
+        margin-bottom: 20px;
+        animation: pulse 1s infinite alternate;
+      }
+
+      @keyframes pulse {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.1);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>🌸 Health Suggestions 🌸</header>
+    <span class="back-btn" onclick="window.history.back()">⬅ Back</span>
+
+    <!-- Main Page -->
+    <section id="main" class="page active">
+      <div class="card-container">
+        <div class="card" onclick="openPage('food')">🍎 Food Suggestions</div>
+        <div class="card" onclick="openPage('exercise')">🏃 Exercises</div>
+        <div class="card" onclick="openPage('common')">💡 Common Tips</div>
+      </div>
+    </section>
+
+    <!-- Food Page -->
+    <section id="food" class="page">
+      <span class="back-btn" onclick="goBack()">⬅ Back</span>
+      <h2>🍎 Thyroid-Friendly Foods</h2>
+      <ul>
+        <li>Leafy greens 🥬</li>
+        <li>Fresh fruits 🍓</li>
+        <li>Whole grains 🌾</li>
+        <li>Low-fat dairy 🥛</li>
+        <li>Lean protein 🍗</li>
+      </ul>
+    </section>
+
+    <!-- Exercise Page -->
+    <section id="exercise" class="page">
+      <span class="back-btn" onclick="goBack()">⬅ Back</span>
+      <h2>🏃 Simple Exercises</h2>
+      <ul id="exerciseList">
+        <li onclick="startTimer('Jumping Jacks')">Jumping Jacks</li>
+        <li onclick="startTimer('Push-ups')">Push-ups</li>
+        <li onclick="startTimer('Squats')">Squats</li>
+        <li onclick="startTimer('Lunges')">Lunges</li>
+        <li onclick="startTimer('Plank')">Plank</li>
+        <li onclick="startTimer('Mountain Climbers')">Mountain Climbers</li>
+        <li onclick="startTimer('Burpees')">Burpees</li>
+        <li onclick="startTimer('High Knees')">High Knees</li>
+        <li onclick="startTimer('Sit-ups')">Sit-ups</li>
+        <li onclick="startTimer('Yoga Stretch')">Yoga Stretch</li>
+      </ul>
+    </section>
+
+    <!-- Timer Page -->
+    <section id="timerPage" class="page">
+      <span class="back-btn" onclick="openPage('exercise')">⬅ Back</span>
+      <div class="timer-container">
+        <div class="circle" id="timer">60</div>
+        <p id="exerciseName"></p>
+      </div>
+    </section>
+
+    <!-- Common Suggestions -->
+    <section id="common" class="page">
+      <span class="back-btn" onclick="window.history.back()">⬅ Back</span>
+      <h2>💡 General Health Tips</h2>
+      <ul>
+        <li>Stay hydrated 💧</li>
+        <li>Sleep 7-8 hours 🛌</li>
+        <li>Practice meditation 🧘</li>
+        <li>Limit junk food 🍔</li>
+        <li>Exercise regularly 🚴</li>
+        <li>Stay positive 🌸</li>
+      </ul>
+    </section>
+
+    <script>
+      function openPage(pageId) {
+        document
+          .querySelectorAll(".page")
+          .forEach((page) => page.classList.remove("active"));
+        document.getElementById(pageId).classList.add("active");
+      }
+
+      function goBack() {
+        openPage("main");
+      }
+
+      // Timer Function
+      let timerInterval;
+      function startTimer(exercise) {
+        openPage("timerPage");
+        document.getElementById("exerciseName").innerText =
+          "Doing: " + exercise;
+        let timeLeft = 60;
+        document.getElementById("timer").innerText = timeLeft;
+
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          document.getElementById("timer").innerText = timeLeft;
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("✅ Exercise Completed!");
+            openPage("exercise");
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

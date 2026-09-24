@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🩺 Previous Health Record</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffe3ed; /* soft pink */
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .app-container {
+      width: 400px;
+      min-height: 620px;
+      margin: 40px auto;
+      border-radius: 18px;
+      border: none;
+      box-shadow: 0 4px 30px rgba(255, 104, 180, 0.18);
+      background: #fffafa;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 30px 22px;
+      position: relative;
+    }
+    .back-btn {
+      cursor: pointer;
+      color: #ff65a3;
+      font-size: 21px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      background: none;
+      border: none;
+    }
+    h2 {
+      color: #ff65a3;
+      margin: 3px 0 15px 0;
+      font-size: 1.4em;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    ul.profile-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px 0;
+    }
+    ul.profile-list li {
+      margin: 9px 0;
+      font-size: 1.11em;
+      color: #444;
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+    }
+    ul.profile-list li .emoji {
+      margin-right: 9px;
+      font-size: 1.15em;
+    }
+    .record-title {
+      font-size: 1.09em;
+      color: #c04fc5;
+      font-weight: 500;
+      margin: 10px 0 18px 0;
+      display: flex;
+      align-items: center;
+    }
+    .images-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 4px;
+    }
+    .report-img {
+      width: 92%;
+      border-radius: 8px;
+      border: 2px solid #ffa4d4;
+      box-shadow: 0 1px 8px #fad3ea;
+      margin-bottom: 6px;
+      background: #fff;
+    }
+    .emoji-interact {
+      margin-top: 22px;
+      display: flex;
+      gap: 18px;
+    }
+    .emoji-btn {
+      font-size: 1.3em;
+      cursor: pointer;
+      border: none;
+      background: #fff5fa;
+      border-radius: 6px;
+      box-shadow: 0 2px 7px #ffe0f2;
+      transition: background 0.2s;
+    }
+    .emoji-btn:hover {
+      background: #ff65a3;
+      color: #fff;
+    }
+  </style>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+    function react(emoji) {
+      alert(`Reacted with ${emoji}! 🎉`);
+    }
+  </script>
+</head>
+<body>
+  <div class="app-container">
+  <span class="back-btn" onclick="window.history.back()">⬅ Back</span>    <h2>💖 General Health Tips</h2>
+    <ul class="profile-list">
+      <li><span class="emoji">👤</span>Name: <b>Harish Ragav</b></li>
+      <li><span class="emoji">⚖️</span>Weight: <b>75Kg</b></li>
+      <li><span class="emoji">📏</span>Height: <b>172.5cm</b></li>
+      <li><span class="emoji">💊</span>Disease: <b>Thyroid</b></li>
+      <li><span class="emoji">🩸</span>Blood Group: <b>O+</b></li>
+    </ul>
+    <div class="record-title"><span class="emoji">🗄️</span>Previous Record Below</div>
+    <div class="images-section">
+      <img src="reportimage (2).jpeg" alt="Previous Report 2" class="report-img">
+      <img src="reportimage (3).jpeg" alt="Previous Report 3" class="report-img">
+      <img src="reportimage (4).jpeg" alt="Previous Report 4" class="report-img">
+    </div>
+  </div>
+</body>
+</html>

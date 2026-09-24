@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediGuard - Home</title>
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      /* Background Gradient with Animation */
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(180deg, #ffffff, #f8bbd0);
+        animation: gradientMove 6s ease infinite alternate;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background: linear-gradient(180deg, #ffffff, #f8bbd0);
+        }
+        100% {
+          background: linear-gradient(180deg, #fce4ec, #f48fb1);
+        }
+      }
+
+      /* Card */
+      .card {
+        background: #fff;
+        border: 2px solid #9c27b0;
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        max-width: 320px;
+        width: 90%;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1.2s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #c2185b;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        color: #444;
+        margin-bottom: 25px;
+      }
+
+      /* Button */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: #e91e63;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+      }
+
+      .btn:hover {
+        background: #c2185b;
+        transform: scale(1.05);
+        box-shadow: 0 6px 14px rgba(233, 30, 99, 0.5);
+      }
+
+      .btn:active {
+        transform: scale(0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="title">MediGuard <span>🧪</span></div>
+      <div class="subtitle">
+        Welcome! Monitor your Thyroid health with a simple, non-invasive scan.
+      </div>
+      <a href="scan.html" class="btn"> Start Healthy → </a>
+    </div>
+  </body>
+</html>

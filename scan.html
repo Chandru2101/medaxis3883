@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediGuard - Scan Results</title>
+    <link rel="stylesheet" href="scan.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        background: #f4f9ff;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .container {
+        flex: 1;
+        padding: 15px;
+        padding-bottom: 70px;
+      }
+      .search-box {
+        margin-bottom: 15px;
+      }
+      .search-box input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 16px;
+      }
+      .result-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .divider {
+        width: 2px;
+        background: #ddd;
+        height: 60px;
+      }
+      .btn {
+        display: block;
+        margin: 5px 0;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 90px;
+      }
+      .eu {
+        background: #4caf50;
+        color: white;
+      }
+      .hyper {
+        background: #f44336;
+        color: white;
+      }
+      .hypo {
+        background: #2196f3;
+        color: white;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .feature-card {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+      .feature-card i {
+        font-size: 30px;
+        color: #4e73df;
+        margin-bottom: 10px;
+      }
+
+      /* bottom navigation bar */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+      .bottom-nav a {
+        text-decoration: none;
+        color: #444;
+        text-align: center;
+        flex: 1;
+      }
+      .bottom-nav i {
+        display: block;
+        font-size: 22px;
+        margin-bottom: 5px;
+      }
+      .bottom-nav span {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Search Bar -->
+      <div class="search-box">
+        <input type="text" placeholder="🔍 Search" />
+      </div>
+
+      <!-- Results Card -->
+      <div class="result-card">
+        <div class="result-left">
+          <div class="card">
+            <h2>Tested Value</h2>
+            <div class="card">
+              <h2>Thyroid Test Result</h2>
+              <p><strong>Count:</strong> <span id="countValue">--</span></p>
+              <p><strong>Status:</strong> <span id="statusValue">--</span></p>
+            </div>
+          </div>
+
+          <script type="module">
+            // Import Firebase SDK
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+            import {
+              getDatabase,
+              ref,
+              onValue,
+            } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+            // Your Firebase config
+            const firebaseConfig = {
+              apiKey: "AIzaSyDliFJ9VknWSm9Wr2iR3Tcea-ee4dG6cH8",
+              authDomain: "mediguard-e1d64.firebaseapp.com",
+              databaseURL:
+                "https://mediguard-e1d64-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "mediguard-e1d64",
+              storageBucket: "mediguard-e1d64.appspot.com",
+              messagingSenderId: "352206454936",
+              appId: "1:352206454936:web:6e3edbb167f42e2e3f30db",
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+
+            // Get references
+            const countRef = ref(db, "thyroid/count");
+            const statusRef = ref(db, "thyroid/status");
+
+            // Listen for real-time updates
+            onValue(countRef, (snapshot) => {
+              document.getElementById("countValue").textContent =
+                snapshot.val();
+            });
+
+            onValue(statusRef, (snapshot) => {
+              document.getElementById("statusValue").textContent =
+                snapshot.val();
+            });
+          </script>
+        </div>
+        <div class="divider"></div>
+        <div class="result-right">
+          <button class="btn eu">HYPO</button>
+          <button class="btn hyper">EU</button>
+          <button class="btn hypo">HYPER</button>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-card" onclick="location.href='health.html'">
+          <i class="fas fa-heartbeat"></i>
+          <p>Health Suggestions</p>
+        </div>
+        <div class="feature-card" onclick="location.href='history.html'">
+          <i class="fas fa-history"></i>
+          <p>Previous Data</p>
+        </div>
+        <div class="feature-card" onclick="location.href='reminders.html'">
+          <i class="fas fa-hospital"></i>
+          <p>Hospital Reminders</p>
+        </div>
+        <div class="feature-card" onclick="location.href='graph.html'">
+          <i class="fas fa-chart-line"></i>
+          <p>Result Graph</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav Bar -->
+    <div class="bottom-nav">
+      <a href="scan.html"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="health.html"><i class="fas fa-heart"></i><span>Health</span></a>
+      <a href="graph.html"
+        ><i class="fas fa-chart-line"></i><span>Graph</span></a
+      >
+      <a href="reminders.html"
+        ><i class="fas fa-bell"></i><span>Reminders</span></a
+      >
+      <a href="history.html"
+        ><i class="fas fa-folder"></i><span>History</span></a
+      >
+    </div>
+    <style>
+      /* Bottom Navigation */
+      .bottom-nav {
+        position: fixed;
+        bottom: 20;
+        left: 14%;
+        transform: translateX(-50%);
+        width: 85%;
+        max-width: 400px;
+        height: 50px;
+        background: #fff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 25px;
+      }
+
+      /* Nav icons */
+      .bottom-nav a {
+        color: #ff4d94;
+        font-size: 20px;
+        text-decoration: none;
+        flex: 1;
+        text-align: center;
+      }
+
+      .bottom-nav a:hover {
+        color: #ff0066;
+      }
+    </style>
+    <script type="module">
+      // Import Firebase
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+      // Your Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyDliFJ9VknWSm9Wr2iR3Tcea-ee4dG6cH8",
+        authDomain: "mediguard-e1d64.firebaseapp.com",
+        databaseURL:
+          "https://mediguard-e1d64-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "mediguard-e1d64",
+        storageBucket: "mediguard-e1d64.appspot.com",
+        messagingSenderId: "263659592663",
+        appId: "1:263659592663:web:49af1a1edf21aea4258992",
+        measurementId: "G-1550DLK1BE",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      // References
+      const countRef = ref(db, "thyroid/count");
+      const statusRef = ref(db, "thyroid/status");
+
+      // Listen for changes
+      onValue(countRef, (snapshot) => {
+        document.getElementById("countValue").textContent = snapshot.val();
+      });
+
+      onValue(statusRef, (snapshot) => {
+        document.getElementById("statusValue").textContent = snapshot.val();
+      });
+    </script>
+  </body>
+</html>
